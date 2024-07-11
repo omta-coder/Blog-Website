@@ -1,0 +1,13 @@
+<%- include("./partials/header")%>
+<%- include("./partials/nav")%>
+<div class="w-[90%] mx-auto bg-slate-500 mt-10 rounded flex items-center justify-center  p-10">
+    <form class="w-1/2 px-3 flex flex-col items-center justify-center gap-3" action="/register" method="post">
+        <h1 class="text-white mb-2 text-3xl">Register Page</h1>
+        <input class="w-full p-2 rounded bg-slate-200 outline-none" type="text" name="username" placeholder="Enter your Name">
+        <input class="w-full p-2 rounded bg-slate-200 outline-none" type="email" name="email" placeholder="Enter your Email">
+        <input class="w-full p-2 rounded bg-slate-200 outline-none" type="password" name="password" placeholder="Enter your Password">
+        <button class="w-full p-2 bg-blue-600 text-white rounded hover:bg-blue-700 duration-300">Register</button>
+        <span class="text-white text-lg">Already have an account <a class="text-blue-400" href="/login">login</a></span>
+    </form>
+</div>
+<%- include("./partials/footer")%>
