@@ -1,0 +1,8 @@
+<%- include("./partials/header")%>
+<%- include("./partials/nav")%>
+<div class="w-[90%] rounded mx-auto bg-slate-500 mt-10 text-white p-10">
+    <h1 class="text-2xl">Profile Page</h1>
+    <p class="mb-5"><%= user.username%></p>
+    <a class="w-full p-2 bg-red-600 text-white rounded hover:bg-red-700 duration-300" href="/users/logout">Logout</a>
+</div>
+<%- include("./partials/footer")%>
