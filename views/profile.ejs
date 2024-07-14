@@ -1,8 +1,25 @@
 <%- include("./partials/header")%>
 <%- include("./partials/nav")%>
 <div class="w-[90%] rounded mx-auto bg-slate-500 mt-10 text-white p-10">
-    <h1 class="text-2xl">Profile Page</h1>
-    <p class="mb-5"><%= user.username%></p>
-    <a class="w-full p-2 bg-red-600 text-white rounded hover:bg-red-700 duration-300" href="/users/logout">Logout</a>
+    
+        <h1 class="text-3xl mb-5 font-bold">Profile Page</h1>
+        <div class="flex items-center gap-5 mb-6">
+            <img class="w-[8vmax] h-[8vmax] rounded-full object-cover" src="<%= user.avatar%>" alt="Not Found">
+            <div>
+                <h1 class="text-xl font-bold"><%= user.username%></h1>
+                <p><%= user.email%></p>
+            </div>
+        </div>
+        <a class="w-full p-2 bg-red-600 text-white rounded hover:bg-red-700 duration-300" href="/users/logout">Logout</a>
+   
+</div>
+<a href="/users/blogDescription/<%= user._id%>" class="w-[90%] rounded mx-auto mt-6 mb-10 flex flex-wrap gap-3">
+    <% users.blogs.forEach((elem)=>{%>
+        <div class="w-[10rem] h-[15vmax]  rounded bg-slate-300">
+            <img class="w-full h-4/5 rounded " src="<%= elem.url%>" alt="">
+            <p class="text-lg text-center"><%= elem.title%></p>
+        </div>
+        
+    <%})%>
 </div>
 <%- include("./partials/footer")%>

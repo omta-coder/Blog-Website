@@ -1,0 +1,12 @@
+<%- include("./partials/header")%>
+<%- include("./partials/nav")%>
+<div class="w-[90%] mx-auto bg-slate-500 mt-10 rounded flex items-center justify-center  p-10">
+    <form class="w-1/2 px-3 flex flex-col items-center justify-center gap-3" action="/users/create" method="post">
+        <h1 class="text-white mb-2 text-3xl">Create New Blog</h1>
+        <input class="w-full p-2 rounded bg-slate-200 outline-none" type="text" name="title" placeholder="Title">
+        <textarea class="w-full p-2 rounded bg-slate-200 outline-none" name="description" placeholder="description"></textarea>
+        <input class="w-full p-2 rounded bg-slate-200 outline-none" type="url" name="url" placeholder="Image">
+        <button class="w-full p-2 bg-blue-600 text-white rounded hover:bg-blue-700 duration-300">Create</button>
+    </form>
+</div>
+<%- include("./partials/footer")%>

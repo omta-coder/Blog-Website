@@ -1,12 +1,23 @@
 <nav class="w-[90%] py-4 mx-auto h-[10%] mt-2 flex items-center justify-between">
     <a href="/" class="text-xl font-semibold">BlogWebsite</a>
     <div class="tags flex items-cengter justfy-center gap-6">
+        <%if(user){%>
+        <a href="/">Home</a>
         <a href="/create">Create Blog</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
+        <%}else{%>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        <%}%>
     </div>
     <div class="button">
-        <a class="p-2 rounded bg-slate-300 " href="/login">Login</a>
-        <a class="p-2 rounded bg-slate-300 " href="/register">Register</a>
+        <%if(user){%>
+            <a class="w-full p-2 bg-red-600 text-white rounded hover:bg-red-700 duration-300" href="/users/logout">Logout</a>
+        <%}else{%>
+            <a class="p-2 rounded bg-slate-300 " href="/login">Login</a>
+            <a class="p-2 rounded bg-slate-300 " href="/register">Register</a>
+        <%}%>
     </div>
 </nav>
