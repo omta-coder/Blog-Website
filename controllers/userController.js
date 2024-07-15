@@ -43,4 +43,19 @@ exports.blogDesc = async(req,res,next)=>{
     const user = await UserCollection.findById(req.user._id).populate('blogs');
     res.render('blogdescription',{user});
 }
+exports.uploadImage = async(req,res,next)=>{
+    try {
+       const {fileId, url, thumbnailUrl} = await imagekit.upload({
+        file: req.files.avatar.data,
+        fileName: req.files.avatar.name,
+       })
+       req.user.avatar = {fileId, url, thumbnailUrl}
+       await req.user.save()
+       res.redirect("/users/profile")
+    } catch (error) {
+      console.log(error);
+      res.send(error.message);
+    }
+  
+  }
 
