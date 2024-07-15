@@ -4,7 +4,10 @@
     
         <h1 class="text-3xl mb-5 font-bold">Profile Page</h1>
         <div class="flex items-center gap-5 mb-6">
-            <img class="w-[8vmax] h-[8vmax] rounded-full object-cover" src="<%= user.avatar%>" alt="Not Found">
+            <img class="avatarimage w-[8vmax] h-[8vmax] rounded-full object-cover" src="<%= user.avatar.thumbnailUrl%>" alt="Not Found">
+            <form class="avatarform"  hidden action="/users/imageUpload/<%= user._id%>" method="post" enctype="multipart/form-data">
+                <input class="avatarinput" type="file" name="avatar">
+            </form>
             <div>
                 <h1 class="text-xl font-bold"><%= user.username%></h1>
                 <p><%= user.email%></p>
@@ -14,7 +17,7 @@
    
 </div>
 <a href="/users/blogDescription/<%= user._id%>" class="w-[90%] rounded mx-auto mt-6 mb-10 flex flex-wrap gap-3">
-    <% users.blogs.forEach((elem)=>{%>
+    <% user.blogs.forEach((elem)=>{%>
         <div class="w-[10rem] h-[15vmax]  rounded bg-slate-300">
             <img class="w-full h-4/5 rounded " src="<%= elem.url%>" alt="">
             <p class="text-lg text-center"><%= elem.title%></p>
@@ -22,4 +25,16 @@
         
     <%})%>
 </div>
+
+<script>
+    const avatarimage = document.querySelector('.avatarimage');
+    const avatarform = document.querySelector('.avatarform');
+    const avatarinput = document.querySelector('.avatarinput');
+    avatarimage.addEventListener('click', () => {
+      avatarinput.click();
+    });
+    avatarinput.addEventListener("change",()=>{
+      avatarform.submit();
+    })
+  </script>
 <%- include("./partials/footer")%>

@@ -4,6 +4,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
+//file uploader
+const fileUpload = require("express-fileupload")
+
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URL).then(()=>{
   console.log("Connected to MongoDB");
@@ -18,6 +22,7 @@ const session = require("express-session");
 const passport = require("passport");
 const UserCollection = require("./models/userModel");
 
+
 var app = express();
 
 // view engine setup
@@ -29,6 +34,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(fileUpload());
 
 app.use(session({
   secret: process.env.SECRET,

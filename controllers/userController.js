@@ -2,6 +2,7 @@ const UserCollection = require("../models/userModel");
 const passport = require("passport");
 const localStrategy = require("passport-local");
 const BlogCollection = require("../models/blogModel");
+const imagekit = require("../utils/imagekit");
 passport.use(new localStrategy(UserCollection.authenticate()));
 
 
@@ -19,8 +20,8 @@ exports.login = passport.authenticate("local",{
 (req,res)=>{}
 
 exports.profile = async(req,res,next)=>{
-    const users = await UserCollection.findById(req.user._id).populate('blogs');
-    res.render('profile',{user:req.user,users})
+    const user = await UserCollection.findById(req.user._id).populate('blogs');
+    res.render('profile',{user})
 }
 
 exports.logout = (req,res,next)=>{
@@ -39,7 +40,7 @@ exports.createBlog = async(req,res,next)=>{
 }
 
 exports.blogDesc = async(req,res,next)=>{
-    const users = await UserCollection.findById(req.user._id).populate('blogs');
-    res.render('blogdescription',{user:req.user,users});
+    const user = await UserCollection.findById(req.user._id).populate('blogs');
+    res.render('blogdescription',{user});
 }
 

@@ -1,9 +1,11 @@
 var express = require('express');
+const BlogCollection = require('../models/blogModel');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express',user:req.user });
+router.get('/', async function(req, res, next) {
+  const allBlogs = await BlogCollection.find()
+  res.render('index', { title: 'Express',user:req.user,allBlogs });
 });
 router.get('/create', function(req, res, next) {
   res.render('createBlog', { title: 'Express',user:req.user  });
