@@ -13,19 +13,20 @@
                 <p><%= user.email%></p>
             </div>
         </div>
-        <a class="w-full p-2 bg-red-600 text-white rounded hover:bg-red-700 duration-300" href="/users/logout">Logout</a>
+        <a class="w-full p-2 px-6 bg-red-600 text-white rounded hover:bg-red-700 duration-300" href="/users/logout">Logout</a>
    
 </div>
-<a href="/users/blogDescription/<%= user._id%>" class="w-[90%] rounded mx-auto mt-6 mb-10 flex flex-wrap gap-3">
-    <% user.blogs.forEach((elem)=>{%>
-        <div class="w-[10rem] h-[15vmax]  rounded bg-slate-300">
+<div class="w-[90%] rounded  mx-auto mt-10 mb-10 flex gap-5 flex-wrap">
+<% user.blogs.forEach((elem)=>{%>
+    <a href="/users/blogDescription/<%= elem._id%>" >
+        <div class="w-[15rem] h-[15rem]  rounded bg-slate-300">
             <img class="w-full h-4/5 rounded " src="<%= elem.url%>" alt="">
-            <p class="text-lg text-center"><%= elem.title%></p>
+            <p class="text-lg text-center mt-2"><%= elem.title.slice(0,10)%>...</p>
         </div>
         
+    </a>
     <%})%>
 </div>
-
 <script>
     const avatarimage = document.querySelector('.avatarimage');
     const avatarform = document.querySelector('.avatarform');
