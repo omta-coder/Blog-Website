@@ -1,23 +1,12 @@
 <nav class="w-[90%] py-4 mx-auto h-[10%] mt-2 flex items-center justify-between">
-    <a href="/" class="text-xl font-semibold">BlogWebsite</a>
-    <div class="tags flex items-cengter justfy-center gap-6">
-        <%if(user){%>
-        <a href="/">Home</a>
-        <a href="/create">Create Blog</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-        <%}else{%>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
-        <%}%>
-    </div>
+    <a href="/" class="text-xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-red-500 font-extrabold">BlogWebsite</a>
     <div class="button">
         <%if(user){%>
             <a class="w-full p-2 bg-red-600 text-white rounded hover:bg-red-700 duration-300" href="/users/logout">Logout</a>
+            <a class="w-full p-2 bg-green-600 text-white rounded hover:bg-green-700 duration-300" href="/users/Profile">Profile</a>
         <%}else{%>
-            <a class="p-2 rounded bg-slate-300 " href="/login">Login</a>
-            <a class="p-2 rounded bg-slate-300 " href="/register">Register</a>
+            <a class="p-2 rounded bg-blue-600 hover:bg-blue-700 duration-300 text-white font-bold " href="/login">Login</a>
+            <a class="p-2 rounded bg-blue-600 hover:bg-blue-700 duration-300 text-white font-bold " href="/register">Register</a>
         <%}%>
     </div>
 </nav>

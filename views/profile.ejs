@@ -1,41 +1,76 @@
-<%- include("./partials/header")%>
-<%- include("./partials/nav")%>
-<div class="w-[90%] rounded mx-auto bg-slate-500 mt-10 text-white p-10">
-    
-        <h1 class="text-3xl mb-5 font-bold">Profile Page</h1>
-        <div class="flex items-center gap-5 mb-6">
-            <img class="avatarimage w-[8vmax] h-[8vmax] rounded-full object-cover" src="<%= user.avatar.thumbnailUrl%>" alt="Not Found">
-            <form class="avatarform"  hidden action="/users/imageUpload/<%= user._id%>" method="post" enctype="multipart/form-data">
-                <input class="avatarinput" type="file" name="avatar">
-            </form>
-            <div>
-                <h1 class="text-xl font-bold"><%= user.username%></h1>
-                <p><%= user.email%></p>
-            </div>
-        </div>
-        <a class="w-full p-2 px-6 bg-red-600 text-white rounded hover:bg-red-700 duration-300" href="/users/logout">Logout</a>
-   
+<%- include("./partials/header")%> <%- include("./partials/nav")%>
+<div class="w-[90%] rounded mx-auto mt-6">
+  <h1 class="text-3xl text-center mb-2 font-bold">Profile Page</h1>
 </div>
-<div class="w-[90%] rounded  mx-auto mt-10 mb-10 flex gap-5 flex-wrap">
-<% user.blogs.forEach((elem)=>{%>
-    <a href="/users/blogDescription/<%= elem._id%>" >
-        <div class="w-[15rem] h-[15rem]  rounded bg-slate-300">
-            <img class="w-full h-4/5 rounded " src="<%= elem.url%>" alt="">
-            <p class="text-lg text-center mt-2"><%= elem.title.slice(0,10)%>...</p>
+<div
+  class="w-[90%] rounded mx-auto flex items-center justify-between bg-slate-300 mt-10 p-6"
+>
+  <div class="flex items-center gap-5">
+    <img
+      class="avatarimage w-[8vmax] h-[8vmax] rounded-full object-cover"
+      src="<%= user.avatar.thumbnailUrl%>"
+      alt="Not Found"
+    />
+    <form
+      class="avatarform"
+      hidden
+      action="/users/imageUpload/<%= user._id%>"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input class="avatarinput" type="file" name="avatar" />
+    </form>
+    <div>
+      <h1 class="text-xl font-bold"><%= user.username%></h1>
+      <p><%= user.email%></p>
+    </div>
+  </div>
+  <div class="flex flex-col items-center justify-center gap-2">
+    <a
+      class="w-fit p-2 bg-green-600 text-white rounded hover:bg-green-700 duration-300"
+      href="/create"
+      >Create Blog</a
+    >
+    <a
+      class="w-fit p-2 px-6 bg-red-600 text-white rounded hover:bg-red-700 duration-300"
+      href="/users/logout"
+      >Logout</a
+    >
+  </div>
+</div>
+<div class="w-[90%] rounded mx-auto mt-10 mb-10 flex flex-wrap">
+  <% user.blogs.forEach((elem)=>{%>
+  <a href="/blogDescription/<%= elem._id%>">
+    <div class="w-[17rem] h-[17rem] mr-3 mb-3 rounded bg-slate-200">
+      <img class="w-full h-4/5 rounded" src="<%= elem.url%>" alt="" />
+      <div class="flex items-center justify-between px-2 mt-2">
+        <p><%= elem.title.slice(0,10)%>...</p>
+        <div class="flex items-center justify-center gap-2">
+          <a
+            class="w-fit p-1 bg-green-600 text-white rounded hover:bg-green-700 duration-300"
+            href="/users/updateblog/<%= elem._id%>"
+            >Update</a
+          >
+          <a
+            class="text-red-500 text-xl font-bold"
+            href="/users/delete/<%= elem._id%>"
+            ><i class="ri-delete-bin-6-line"></i
+          ></a>
         </div>
-        
-    </a>
-    <%})%>
+      </div>
+    </div>
+  </a>
+  <%})%>
 </div>
 <script>
-    const avatarimage = document.querySelector('.avatarimage');
-    const avatarform = document.querySelector('.avatarform');
-    const avatarinput = document.querySelector('.avatarinput');
-    avatarimage.addEventListener('click', () => {
-      avatarinput.click();
-    });
-    avatarinput.addEventListener("change",()=>{
-      avatarform.submit();
-    })
-  </script>
+  const avatarimage = document.querySelector(".avatarimage");
+  const avatarform = document.querySelector(".avatarform");
+  const avatarinput = document.querySelector(".avatarinput");
+  avatarimage.addEventListener("click", () => {
+    avatarinput.click();
+  });
+  avatarinput.addEventListener("change", () => {
+    avatarform.submit();
+  });
+</script>
 <%- include("./partials/footer")%>

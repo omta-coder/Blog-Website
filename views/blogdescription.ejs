@@ -1,17 +1,17 @@
 <%- include("./partials/header")%>
 <%- include("./partials/nav")%>
-<div class="w-[90%] rounded mx-auto bg-slate-500 mt-10 text-white p-10">
+<div class="w-[90%] rounded mx-auto bg-slate-300 mt-10  p-10">
     <h1 class="text-2xl mb-4">Blog Description</h1>
-    <% user.blogs.forEach((elem)=>{%>
+    
         <div class="w-full flex mb-5 items-center gap-7">
-            <img class="w-1/2  rounded " src="<%= elem.url%>" alt="">
+            <img class="w-1/2 h-1/2 rounded " src="<%= blogdescriptions.url%>" alt="">
             <div >
-                <h1 class="text-xl font-bold mb-2"><%= elem.title%></h1>
-                <p class="text-lg "><%= elem.description%></p>
-                <a class="text-blue-700" href="/users/profile">Profile</a>
+                <h1 class="text-xl font-bold mb-2"><%= blogdescriptions.title%></h1>
+                <h3 class=" font-bold mb-2"><%= blogdescriptions.createdAt.toString().slice(0,16)%></h3>
+                <p class="text-lg "><%= blogdescriptions.description%></p>
             </div>
         </div>
         
-    <%})%>
+    
 </div>
 <%- include("./partials/footer")%>

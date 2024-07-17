@@ -3,7 +3,7 @@
 <div class="w-[90%] rounded  mx-auto mt-10 mb-10">
     <div class="flex gap-5 flex-wrap">
         <% allBlogs.forEach((elem)=>{%>
-            <a href="/users/blogDescription/<%= elem._id%>" >
+            <a href="/blogDescription/<%= elem._id%>" >
             <div class="w-[28vmax] rounded ">
                 <img class="w-[28vmax] h-[28vmax] rounded " src="<%= elem.url%>" alt="">
                 <p class="text-lg font-bold mt-5 mb-2 text-center "><%= elem.title%></p>
