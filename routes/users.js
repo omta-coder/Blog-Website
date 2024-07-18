@@ -8,6 +8,7 @@ const {
   uploadImage,
   blogUpdate,
   deleteBlog,
+  writeComment,
 } = require("../controllers/userController");
 const { isLoggedIn } = require("../middleware/auth");
 const imagekit = require("../utils/imagekit");
@@ -27,5 +28,7 @@ router.get("/updateblog/:id", isLoggedIn, async (req, res, next) => {
 });
 router.post("/updateblog/:id", isLoggedIn, blogUpdate);
 router.get("/delete/:id", isLoggedIn,deleteBlog);
+router.post('/comment/:id',isLoggedIn,writeComment);
+
 
 module.exports = router;

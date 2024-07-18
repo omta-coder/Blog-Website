@@ -9,6 +9,27 @@
                 <h1 class="text-xl font-bold mb-2"><%= blogdescriptions.title%></h1>
                 <h3 class=" font-bold mb-2"><%= blogdescriptions.createdAt.toString().slice(0,16)%></h3>
                 <p class="text-lg "><%= blogdescriptions.description%></p>
+                <div class="mt-6">
+                    <form action="/users/comment/<%= blogdescriptions._id%>" method="post">
+                        <input class="w-2/3 p-2 rounded-[50px] px-3 outline-none" type="text" name="comment" placeholder="Write a Comment">
+                        <button class="w-fit p-1 bg-[#00A6ED] text-white rounded-full text-xl hover:bg-[#00A6ED] duration-300">⬆️</button>
+                    </form>
+                    <div class="allComment mt-4 flex flex-col gap-3">
+                        <% blogdescriptions.comments.forEach((elem)=>{%>
+                            <div class="singlecomment bg-white w-2/3 rounded-[50px] p-1 flex items-center gap-3">
+                              <div class="profile">
+                                
+                                <% if (elem.postedBy) { %>
+                                  <img class="w-[2rem] h-[2rem] bg-red-300 rounded-full" src="<%= elem.postedBy.avatar %>" alt="">
+                                <% } else { %>
+                                  <img class="w-[2rem] h-[2rem] bg-red-300 rounded-full" src="" alt="">
+                                <% } %>
+                              </div>
+                              <h1 ><%= elem.comment%></h1>
+                            </div>
+                          <%})%>
+                    </div>
+                </div>
             </div>
         </div>
         

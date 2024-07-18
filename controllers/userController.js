@@ -3,6 +3,7 @@ const passport = require("passport");
 const localStrategy = require("passport-local");
 const BlogCollection = require("../models/blogModel");
 const imagekit = require("../utils/imagekit");
+const commentCollection = require("../models/commentModel");
 passport.use(new localStrategy(UserCollection.authenticate()));
 
 exports.register = async (req, res, next) => {
@@ -65,4 +66,16 @@ exports.blogUpdate = async (req, res, next) => {
 exports.deleteBlog =async (req,res,next)=>{
     await BlogCollection.findByIdAndDelete(req.params.id);
     res.redirect("/users/profile");
+}
+exports.writeComment = async(req,res,next)=>{
+  const newComment = await new commentCollection({
+    comment: req.body.comment,
+    createdBy: req.user._id,
+    blogId: req.params.id
+  })
+  await newComment.save();
+  const currentBlog = await BlogCollection.findByIdAndUpdate(req.params.id,{$push:{comments:newComment._id}})
+  await currentBlog.save();
+  res.redirect(`/blogDescription/${req.params.id}`);
+  console.log(currentBlog);
 }
