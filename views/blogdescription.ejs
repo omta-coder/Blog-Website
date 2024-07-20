@@ -20,11 +20,12 @@
                               <div class="profile">
                                 
                                 <% if (elem.postedBy) { %>
-                                  <img class="w-[2rem] h-[2rem] bg-red-300 rounded-full" src="<%= elem.postedBy.avatar %>" alt="">
+                                  <img class="w-[2rem] h-[2rem] bg-red-300 rounded-full" src="<%= elem.postedBy.avatar.thumbnailUrl %>" alt="">
                                 <% } else { %>
                                   <img class="w-[2rem] h-[2rem] bg-red-300 rounded-full" src="" alt="">
                                 <% } %>
                               </div>
+                              
                               <h1 ><%= elem.comment%></h1>
                             </div>
                           <%})%>

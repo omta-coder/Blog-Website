@@ -70,12 +70,13 @@ exports.deleteBlog =async (req,res,next)=>{
 exports.writeComment = async(req,res,next)=>{
   const newComment = await new commentCollection({
     comment: req.body.comment,
-    createdBy: req.user._id,
+    postedBy: req.user._id,
     blogId: req.params.id
   })
+ 
   await newComment.save();
   const currentBlog = await BlogCollection.findByIdAndUpdate(req.params.id,{$push:{comments:newComment._id}})
   await currentBlog.save();
   res.redirect(`/blogDescription/${req.params.id}`);
-  console.log(currentBlog);
+ console.log(currentBlog);
 }
