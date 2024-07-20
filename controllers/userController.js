@@ -80,3 +80,14 @@ exports.writeComment = async(req,res,next)=>{
   res.redirect(`/blogDescription/${req.params.id}`);
  console.log(currentBlog);
 }
+exports.BlogLike = async(req,res,next)=>{
+  const blog = await BlogCollection.findById(req.params.pid)
+  if(blog.likes.includes(req.user._id)){
+    const uidx = blog.likes.indexOf(req.user._id)
+    blog.likes.splice(uidx,1);
+  }else{
+    blog.likes.push(req.user._id)
+  }
+  await blog.save();
+  res.redirect(`/blogDescription/${req.params.pid}`)
+}

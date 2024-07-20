@@ -24,12 +24,13 @@ router.get('/register', function(req, res, next) {
   res.render('register', { title: 'Express' ,user:req.user });
 });
 router.get('/blogDescription/:id',async function(req, res, next) {
+  const blogs = await BlogCollection.find().populate('createdBy');
   const blogdescriptions = await BlogCollection.findById(req.params.id).populate({
     path:'comments',
     model:'comment',
     populate:{path:'postedBy',model:'user'}
   }).exec()
-  res.render('blogdescription', { title: 'Express' ,user:req.user,blogdescriptions });
+  res.render('blogdescription', { title: 'Express' ,user:req.user,blogdescriptions,blogs });
 });
 
 

@@ -13,7 +13,11 @@ const blogSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'comment'
     }
-   ]
+   ],
+   likes:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user'
+   }]
 },{timestamps:true})
 
 const BlogCollection = mongoose.model("blog",blogSchema)
