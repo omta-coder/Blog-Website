@@ -20,7 +20,7 @@
                 </div>
                 <div class="likes flex items-center">
                   <a class="text-2xl" href="/users/like/<%= blogdescriptions._id%>">
-                    <%= blogdescriptions.likes.includes(user._id)? "💗":"🤍"%>
+                    <%= blogdescriptions.likes.includes()? "💗":"🤍"%>
                   </a>
                   <span><%= blogdescriptions.likes.length%></span>
                 </div>
